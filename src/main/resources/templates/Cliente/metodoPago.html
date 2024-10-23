@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/Estilo_Pago.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+    <script
+            src="https://www.paypal.com/sdk/js?client-id=ARSZv2qBmGx9-Jvjv85G4wwXL4VlgdCVDEk0s7ki60OIyt6Vd8t6HttX6l59Aw-8WnAWWVMPRjgZOqlT&buyer-country=US&currency=USD&components=buttons&enable-funding=card&disable-funding=venmo,paylater"
+            data-sdk-integration-source="developer-studio"
+        ></script>
+</head>
+<body>
+    <header>
+        <div id="encabezado">
+            <div id="imagen-restaurante">
+                <a th:href="@{/inicio}"><img src="/Multimedia/Img/Logos/Logo-blanco.png" alt="Logo-restaurante"></a>
+            </div>
+            <div id="imagen-usuario">
+                <i class="ti ti-user-circle"></i>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+        <button id="btn-retroceso" onclick="window.history.back();">Regresar</button>
+        <!-- Contenedor de pago de PAYPAL -->
+        <div id="paypal-button-container"></div>
+        <p id="result-message"></p>
+            <form th:action="@{/inicio/guardarPedido}" method="post">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="title">Dirección de Envío</h3>
+                        <div class="inputBox">
+                            <span>Nombre :</span>
+                            <input type="text" name="nombre" placeholder="***********" >
+                        </div>
+                        <div class="inputBox">
+                            <span>Email :</span>
+                            <input type="email" name="email" placeholder="ejemplo@ejemplo.com">
+                        </div>
+                        <div class="inputBox">
+                            <span>Dirección :</span>
+                            <input type="text" name="direccion" placeholder="avenida - calle - localidad">
+                        </div>
+                        <div class="inputBox">
+                            <span>Ciudad :</span>
+                            <input type="text" name="ciudad" placeholder="Lima" >
+                        </div>
+                        <div class="flex">
+                            <div class="inputBox">
+                                <span>País :</span>
+                                <input type="text" name="pais" placeholder="Perú" >
+                            </div>
+                            <div class="inputBox">
+                                <span>Código Postal :</span>
+                                <input type="text" name="codigoPostal" placeholder="123 456">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3 class="title">PAGO</h3>
+                        <div class="inputBox">
+                            <span>Tarjetas :</span>
+                            <img src="/Multimedia/Img/Logos/card_img.png" alt="">
+                        </div>
+                        <div class="inputBox">
+                            <span>Nombre en la tarjeta :</span>
+                            <input type="text" name="nombreTarjeta" placeholder="********">
+                        </div>
+                        <div class="inputBox">
+                            <span>Número de Tarjeta de Crédito :</span>
+                            <input type="number" name="numeroTarjeta" placeholder="1111-2222-3333-4444">
+                        </div>
+                        <div class="inputBox">
+                            <span>Mes :</span>
+                            <input type="text" name="mes" placeholder="Enero">
+                        </div>
+                        <div class="flex">
+                            <div class="inputBox">
+                                <span>Año :</span>
+                                <input type="number" name="ano" placeholder="2024">
+                            </div>
+                            <div class="inputBox">
+                                <span>CVV :</span>
+                                <input type="text" name="cvv" placeholder="1234" >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="reset" value="Limpiar" class="submit-btn">
+                <input type="submit" value="Realizar Compra" class="submit-btn">
+            </form>
+            
+            <section id="contenedor-productos-carrito">
+		        <div id="titulo-carrito">
+		            <h2>Resumen del pedido:</h2>
+		            
+		        </div>
+		        <div id="lista-productos-carrito">
+		            <div th:each="detalle : ${resumen}" 
+		                 class="item-producto-carrito">
+		                <div class="cantidad-item-producto-carrito">
+		                    <span class="contador-item-carrito" th:text="${detalle.cantidad}"></span>
+		                </div>
+		                <div class="producto-contenido-carrito">
+		                    <img th:src="@{/Imagenes/{img}(img=${detalle.producto.imagen})}" alt="Producto" class="producto-imagen-carrito">
+		                    <div class="contenedor-info-producto-carrito">
+		                        <div class="info-producto-carrito-01">
+		                            <h3 class="producto-nombre-carrito" th:text="${detalle.nombreProducto}">Nombre del Producto</h3>
+		                        </div>
+		                        <div class="info-producto-carrito-02">
+		                            <h2 class="producto-precio-carrito" th:text="${detalle.precioUnitario}">Precio</h2>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        <div id="total-productos-carrito">
+		            <h2>Total a pagar:</h2>
+		            <div id="precio-total-carrito">
+		                <span id="simbolo-precio-carrito">$</span>
+		                <span id="numero-precio-carrito" th:text="${total}">0</span>
+		            </div>
+		        </div>
+		    </section>
+        </div>
+    </main>
+    <script src="/js/Metodo_pago.js"></script>
+</body>
+</html>

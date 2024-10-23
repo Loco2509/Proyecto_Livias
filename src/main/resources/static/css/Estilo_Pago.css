@@ -1,0 +1,323 @@
+/* Importar desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
+:root{
+    --color_dorado_01: #CF7500;
+    --color_dorado_02: #F0A500;
+    --color_dorado_claro01: #B8860B;
+    --color_dorado_claro02: #A35709;
+    --color_marron: #4F200D;
+    --color_marron_claro: #6A492B;
+    --color_sin_stock: rgba(0,0,0,0.5);
+    --color-letra-claro: #EEEEEE;
+}
+/* Aplicar la fuente */
+body {
+  font-family: 'Libre Baskerville', serif;
+}
+*{
+    margin:0; padding:0;
+    box-sizing: border-box;
+    outline: none; border:none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+}
+a{
+    text-decoration: none;
+}
+
+ul{
+    list-style: none;
+}
+
+/*menu del navegador*/
+#encabezado{
+    padding: 1em 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    background-color: #000000!important;
+}
+
+#encabezado img{
+    width: 7em;
+    height: auto;
+}
+
+#imagen-usuario{
+    color: var(--color_dorado_claro01);
+    font-size: 3em;
+}
+
+/*Botón para retroceder*/
+#btn-retroceso{
+	position: absolute;
+	left:20px;
+	top:20px;
+	font-family: 'Poppins', sans-serif;
+    color: var(--color-letra-claro);
+    border: none;
+    border-radius: 10px;
+    padding: 20px 25px;
+    background-color: var(--color_marron);
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.805);
+}
+
+#btn-retroceso:hover{
+    transform: scale(1.1);
+    background-color: var(--color_dorado_claro02);
+}
+
+
+/*Contenedor de método de pago*/
+.container{
+    display: flex;
+    position: relative;
+    justify-content: space-around;
+    align-items: center;
+    padding:25px;
+    min-height: 100vh;
+    background: radial-gradient(#333, #222)
+  }
+  
+  .container form{
+    padding:20px;
+    width:700px;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,.1);
+  }
+  
+  .container form .row{
+    display: flex;
+    flex-wrap: wrap;
+    gap:15px;
+  }
+  
+  .container form .row .col{
+    flex:1 1 250px;
+  }
+  
+  .container form .row .col .title{
+    font-size: 20px;
+    color:#333;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+  }
+  
+  .container form .row .col .inputBox{
+    margin:15px 0;
+  }
+  
+  .container form .row .col .inputBox span{
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .container form .row .col .inputBox input{
+    width: 100%;
+    border:1px solid #ccc;
+    padding:10px 15px;
+    font-size: 15px;
+    text-transform: none;
+  }
+  
+  .container form .row .col .inputBox input:focus{
+    border:1px solid #000;
+  }
+  
+  .container form .row .col .flex{
+    display: flex;
+    gap:15px;
+  }
+  
+  .container form .row .col .flex .inputBox{
+    margin-top: 5px;
+  }
+  
+  .container form .row .col .inputBox img{
+    height: 34px;
+    margin-top: 5px;
+    filter: drop-shadow(0 0 1px #000);
+  }
+  
+  .container form .submit-btn{
+    width: 100%;
+    padding:12px;
+    font-size: 17px;
+    background: #27ae60;
+    color:#fff;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+  
+  .container form .submit-btn:hover{
+    background: #2ecc71;
+    color: #000;
+  }
+  
+  
+  
+  /*Estilos del carrito*/
+  
+  /*CONTENEDOR CARRITO*/
+
+
+#contenedor-productos-carrito{
+    display: flex;
+    flex-direction: column;
+    z-index: 101;
+    min-width: 400px;
+    max-width: 510px;
+    height: 100vh;
+    background-color: #000;
+    padding: 20px;
+    transition: transform 0.5s ease-in-out;
+    row-gap: 15px;
+}
+#contenedor-productos-carrito.show{
+    transform: translatex(0px);
+}
+
+
+/*ENCABEZADO DEL CARRITO*/
+#titulo-carrito{
+    flex: 0.5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-letra-claro);
+    padding-bottom: 12px;
+    border-bottom: 5px solid #333;
+}
+#titulo-carrito>i{
+    font-size: 2em;
+}
+#lista-productos-carrito{
+    flex: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+#carrito-vacio{
+    font-size: 1em;
+    color: var(--color-letra-claro);
+}
+
+
+/*ITEM DEL CARRITO*/
+.item-producto-carrito{
+    max-width: 100%;
+    min-height: 120px;
+    max-height: 120px;
+    display: flex;
+    border: 5px solid #000;
+    overflow: hidden;
+}
+.cantidad-item-producto-carrito{
+    flex: 0.5;
+    border: 4px solid #333;
+    border-right: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contador-item-carrito{
+    font-size: 2em;
+    color: var(--color-letra-claro);
+}
+.producto-contenido-carrito{
+    display: flex;
+    flex: 2;
+    background-color: white;
+}
+.producto-imagen-carrito{
+    max-width: 35%;
+    width: 35%;
+    object-fit: contain;
+    transform: scale(0.8);
+}
+.contenedor-info-producto-carrito{
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.info-producto-carrito-01{
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 5px;
+    align-items: center;
+}
+.info-producto-carrito-02{
+    flex: 0 1 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.producto-nombre-carrito{
+    font-size: clamp(1em, 1vw, 20px);
+    color: #333;
+}
+.producto-precio-carrito{
+    font-size: clamp(1em, 1vw, 10px);
+    flex: 1 0 auto;
+}
+.contenedor-botones-cantidad-carrito{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 5px;
+}
+
+/*PIE DEL CARRITO*/
+
+#total-productos-carrito{
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 20px;
+}
+
+#total-productos-carrito>h2{
+    color: var(--color-letra-claro);
+    text-align: center;
+    font-size: 1.2em;
+}
+
+
+#precio-total-carrito{
+    display: flex;
+    font-size: 1.5em;
+    color: var(--color-letra-claro);
+    padding: 10px;
+    background-color: var(--color_dorado_claro01);
+    border-radius: 7px;
+    column-gap: 20px;
+}
+
+#btnComprar-carrito{
+    flex: 0 0 auto;
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-letra-claro);
+    border: none;
+    border-radius: 10px;
+    padding: 20px 15px;
+    background-color: var(--color_marron);
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.805);
+}
+
+#btnComprar-carrito:hover{
+    transform: scale(1.1);
+    background-color: var(--color_dorado_claro02);
+}
+
+  
+  
+  

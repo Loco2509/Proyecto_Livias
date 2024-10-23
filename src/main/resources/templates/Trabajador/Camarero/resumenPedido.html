@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/Estilo_Pago.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+</head>
+<body>
+    <header>
+        <div id="encabezado">
+            <div id="imagen-restaurante">
+                <a th:href="@{/puestos/camarero}"><img src="/Multimedia/Img/Logos/Logo-blanco.png" alt="Logo-restaurante"></a>
+            </div>
+            <div id="imagen-usuario">
+                <i class="ti ti-user-circle"></i>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+        <button id="btn-retroceso" onclick="window.history.back();">Regresar</button>
+		    
+		    <section id="contenedor-productos-carrito">
+		        <div id="titulo-carrito">
+		            <h2>Resumen del pedido:</h2>
+		            
+		        </div>
+		        <div id="lista-productos-carrito">
+		            <div th:each="detalle : ${resumen}" 
+		                 class="item-producto-carrito">
+		                <div class="cantidad-item-producto-carrito">
+		                    <span class="contador-item-carrito" th:text="${detalle.cantidad}"></span>
+		                </div>
+		                <div class="producto-contenido-carrito">
+		                    <img th:src="@{/Imagenes/{img}(img=${detalle.producto.imagen})}" alt="Producto" class="producto-imagen-carrito">
+		                    <div class="contenedor-info-producto-carrito">
+		                        <div class="info-producto-carrito-01">
+		                            <h3 class="producto-nombre-carrito" th:text="${detalle.nombreProducto}">Nombre del Producto</h3>
+		                        </div>
+		                        <div class="info-producto-carrito-02">
+		                            <h2 class="producto-precio-carrito" th:text="${detalle.precioUnitario}">Precio</h2>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        <div id="total-productos-carrito">
+		            <h2>Total a pagar:</h2>
+		            <div id="precio-total-carrito">
+		                <span id="simbolo-precio-carrito">$</span>
+		                <span id="numero-precio-carrito" th:text="${total}">0</span>
+		            </div>
+		            <form id="miFormularioPedido" style="display: contents;" th:action="@{/puestos/camarero/guardarPedido}" method="post">
+		            	<button type="submit" id="btnComprar-carrito">Realizar pedido</button>
+		            </form>
+		        </div>
+		    </section>
+        </div>
+    </main>
+    <script src="/js/Metodo_pago.js"></script>
+</body>
+</html>
